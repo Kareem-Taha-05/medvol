@@ -5,7 +5,7 @@
 ---
 
 <div style="text-align:center; margin: 2rem 0;">
-  <img src="../assets/demo/demo.gif" width="720" alt="MEDVOL demo"/>
+  <img src="assets/demo/demo.gif" width="720" alt="MEDVOL demo"/>
 </div>
 
 ---
