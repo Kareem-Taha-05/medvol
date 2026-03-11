@@ -1,0 +1,46 @@
+name: Release
+
+# Triggers when you push a version tag: git tag v1.0.1 && git push --tags
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write   # needed to create GitHub Releases
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history for changelog generation
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build tools
+        run: |
+          pip install --upgrade pip build
+
+      - name: Build wheel and sdist
+        run: python -m build
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "MEDVOL v${{ steps.version.outputs.VERSION }}"
+          generate_release_notes: true   # auto-generates from merged PR titles
+          files: |
+            dist/*.whl
+            dist/*.tar.gz

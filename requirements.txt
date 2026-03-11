@@ -1,0 +1,13 @@
+# MEDVOL — production dependencies
+# Generated from pyproject.toml. Install with: pip install -r requirements.txt
+# For development, use: pip install -e ".[dev]"
+# For DICOM compression support: pip install -e ".[compress]"
+
+PyQt5>=5.15.0
+vtk>=9.0.0
+pydicom>=2.3.0
+nibabel>=4.0.0
+numpy>=1.24.0
+matplotlib>=3.6.0
+scipy>=1.10.0
+scikit-image>=0.20.0

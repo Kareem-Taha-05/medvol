@@ -1,0 +1,65 @@
+/* ── Override Material primary/accent to match MEDVOL phosphor palette ───── */
+
+:root {
+  --md-primary-fg-color:          #b8ff2e;
+  --md-primary-fg-color--light:   #d4ff6a;
+  --md-primary-fg-color--dark:    #8acc1a;
+  --md-primary-bg-color:          #1c1c1a;
+  --md-accent-fg-color:           #b8ff2e;
+  --md-accent-fg-color--transparent: rgba(184, 255, 46, 0.1);
+
+  /* Concrete background for dark slate scheme */
+  --md-default-bg-color:          #252523;
+  --md-code-bg-color:             #1c1c1a;
+}
+
+/* ── Navigation tabs ─────────────────────────────────────────────────────── */
+.md-tabs {
+  background-color: #1c1c1a;
+  border-bottom: 2px solid #b8ff2e;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  color: #b8ff2e !important;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.md-header {
+  background-color: #1c1c1a;
+  border-bottom: 2px solid #b8ff2e;
+}
+
+/* ── Code blocks ─────────────────────────────────────────────────────────── */
+.highlight code {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+
+/* ── Admonition — tip uses phosphor green ────────────────────────────────── */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #b8ff2e;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(184, 255, 46, 0.12);
+}
+
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: #b8ff2e;
+}
+
+/* ── Inline code ─────────────────────────────────────────────────────────── */
+.md-typeset code {
+  color: #b8ff2e;
+  background-color: #1c1c1a;
+}
+
+/* ── Mermaid diagrams — use phosphor for node borders ────────────────────── */
+.mermaid .node rect,
+.mermaid .node circle {
+  stroke: #b8ff2e !important;
+}

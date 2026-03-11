@@ -1,0 +1,110 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "medvol"
+version = "1.0.0"
+description = "Brutalist 3D medical image viewer — DICOM & NIfTI, zero configuration"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = ["medical imaging", "DICOM", "NIfTI", "VTK", "radiology", "3D viewer"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "PyQt5>=5.15",
+    "vtk>=9.0",
+    "pydicom>=2.3",
+    "nibabel>=4.0",
+    "numpy>=1.24",
+    "matplotlib>=3.6",
+    "scipy>=1.10",
+    "scikit-image>=0.20",
+]
+
+[project.optional-dependencies]
+# DICOM compression backends — needed for JPEG / JPEG 2000 / RLE encoded files
+compress = [
+    "pylibjpeg>=1.4",
+    "pylibjpeg-libjpeg>=1.3",
+    "python-gdcm>=3.0",
+]
+# Developer tools
+dev = [
+    "pytest>=7.0",
+    "pytest-qt>=4.2",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+    "pre-commit>=3.0",
+]
+# Everything
+all = [
+    "medvol[compress]",
+    "medvol[dev]",
+]
+
+[project.urls]
+Homepage     = "https://github.com/Kareem-Taha-05/medvol"
+Documentation = "https://Kareem-Taha-05.github.io/medvol"
+Repository   = "https://github.com/Kareem-Taha-05/medvol"
+Issues       = "https://github.com/Kareem-Taha-05/medvol/issues"
+Changelog    = "https://github.com/Kareem-Taha-05/medvol/blob/main/CHANGELOG.md"
+
+[project.scripts]
+# After `pip install .`, users can run `medvol` from anywhere
+medvol = "medvol.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["medvol"]
+
+# ── Black ──────────────────────────────────────────────────────────────────────
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+skip-string-normalization = false
+
+# ── Ruff ───────────────────────────────────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long — black handles this
+    "B008",  # do not perform function calls in default argument
+]
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]   # allow assert in tests
+
+# ── Mypy ───────────────────────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true   # VTK and PyQt5 lack complete stubs
+warn_return_any = true
+warn_unused_ignores = true
+
+# ── Pytest ─────────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

@@ -1,0 +1,100 @@
+site_name: MEDVOL
+site_description: Brutalist 3D medical image viewer — DICOM & NIfTI, zero configuration
+site_author: Kareem Taha
+site_url: https://Kareem-Taha-05.github.io/medvol
+repo_url: https://github.com/Kareem-Taha-05/medvol
+repo_name: Kareem-Taha-05/medvol
+
+copyright: "MIT License — MEDVOL contributors"
+
+# ── Theme ──────────────────────────────────────────────────────────────────────
+theme:
+  name: material
+  custom_dir: docs/overrides    # for custom CSS / logo override
+  palette:
+    scheme: slate               # dark base
+    primary: custom             # → see extra.css for #b8ff2e override
+    accent: custom
+  font:
+    text: IBM Plex Mono         # matches brutalist aesthetic
+    code: IBM Plex Mono
+  logo: assets/branding/logo.svg
+  favicon: assets/branding/icon.ico
+  features:
+    - navigation.tabs           # top-level sections become tabs
+    - navigation.sections       # collapsible sidebar sections
+    - navigation.top            # back-to-top button
+    - toc.integrate             # TOC in sidebar, not separate panel
+    - content.code.copy         # copy button on all code blocks
+    - content.code.annotate     # inline code annotations
+    - search.highlight
+
+# ── Navigation ─────────────────────────────────────────────────────────────────
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quick Start: quickstart.md
+  - User Guide:
+      - Loading Files: usage/loading.md
+      - Navigation & Views: usage/navigation.md
+      - Brightness & Contrast: usage/adjustments.md
+      - Zoom: usage/zoom.md
+  - Architecture: architecture.md
+  - API Reference:
+      - core.loaders: api/loaders.md
+      - core.volume_rendering: api/volume_rendering.md
+      - core.dependencies: api/dependencies.md
+      - ui.main_viewer: api/main_viewer.md
+      - ui.slice_canvas: api/slice_canvas.md
+      - utils.image_processing: api/image_processing.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
+# ── Plugins ────────────────────────────────────────────────────────────────────
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_category_heading: true
+            show_signature_annotations: true
+            members_order: source
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+# ── Markdown extensions ────────────────────────────────────────────────────────
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+# ── Extra ──────────────────────────────────────────────────────────────────────
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Kareem-Taha-05/medvol
+
+extra_css:
+  - stylesheets/extra.css

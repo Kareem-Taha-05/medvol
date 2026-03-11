@@ -1,0 +1,39 @@
+repos:
+  # ── Trailing whitespace, EOF newlines, YAML/TOML syntax ─────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: ["--maxkb=5120"]   # block files > 5 MB (accidental dataset commits)
+      - id: check-merge-conflict
+      - id: debug-statements      # catch leftover breakpoint() / pdb calls
+      - id: no-commit-to-branch
+        args: ["--branch", "main"]
+
+  # ── Black — code formatting ──────────────────────────────────────────────────
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  # ── Ruff — linting + import sorting ─────────────────────────────────────────
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.6
+    hooks:
+      - id: ruff
+        args: ["--fix"]   # auto-fix safe issues (import order, etc.)
+
+  # ── Mypy — type checking ─────────────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - numpy
+        args: ["--ignore-missing-imports"]
+        files: ^medvol/   # only type-check the package, not scripts/tests
