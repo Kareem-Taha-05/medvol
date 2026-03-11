@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/architecture/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/installation/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/quickstart/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/usage/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/api/image_processing/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/api/loaders/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://kareem-taha-05.github.io/medvol/api/volume_rendering/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+</urlset>
