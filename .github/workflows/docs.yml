@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # needed for git-revision-date plugin
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -33,5 +33,13 @@ jobs:
           pip install -e ".[dev]"
           pip install mkdocs-material mkdocstrings[python] mkdocs-git-revision-date-localized-plugin
 
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Find and deploy MkDocs
+        run: |
+          if [ -f "mkdocs.yml" ]; then
+            mkdocs gh-deploy --force
+          elif [ -f "docs/mkdocs.yml" ]; then
+            mkdocs gh-deploy --force --config-file docs/mkdocs.yml
+          else
+            echo "ERROR: mkdocs.yml not found at root or docs/"
+            exit 1
+          fi
