@@ -1,4 +1,4 @@
-site_name: MEDVOL
+﻿site_name: MEDVOL
 site_description: Brutalist 3D medical image viewer — DICOM & NIfTI, zero configuration
 site_author: Kareem Taha
 site_url: https://kareem-taha-05.github.io/medvol
@@ -7,7 +7,6 @@ repo_name: Kareem-Taha-05/medvol
 
 copyright: "MIT License — MEDVOL contributors"
 
-# ── Theme ──────────────────────────────────────────────────────────────────────
 theme:
   name: material
   palette:
@@ -24,7 +23,6 @@ theme:
     - content.code.copy
     - search.highlight
 
-# ── Navigation — only files that actually exist ────────────────────────────────
 nav:
   - Home: index.md
   - Installation: installation.md
@@ -35,11 +33,9 @@ nav:
       - Volume Rendering: api/volume_rendering.md
       - Image Processing: api/image_processing.md
 
-# ── Plugins ────────────────────────────────────────────────────────────────────
 plugins:
   - search
 
-# ── Markdown extensions ────────────────────────────────────────────────────────
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -60,11 +56,10 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# ── Extra ──────────────────────────────────────────────────────────────────────
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Kareem-Taha-05/medvol
 
 extra_css:
-  - stylesheets/extra.css
+  - docs/stylesheets/extra.css
