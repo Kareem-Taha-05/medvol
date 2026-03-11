@@ -15,7 +15,7 @@ Built with PyQt5, VTK, and Matplotlib. No cloud. No setup wizard. No nonsense.
 [![VTK](https://img.shields.io/badge/VTK-9.x-005f87?style=flat-square)](https://vtk.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-b8ff2e?style=flat-square&color=252523&labelColor=252523)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-b8ff2e?style=flat-square&color=252523&labelColor=252523)](CONTRIBUTING.md)
-[![CI](https://img.shields.io/github/actions/workflow/status/YOUR_USER/medvol/ci.yml?style=flat-square&label=CI&color=252523&labelColor=252523)](https://github.com/YOUR_USER/medvol/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/Kareem-Taha-05/medvol/ci.yml?style=flat-square&label=CI&color=252523&labelColor=252523)](https://github.com/Kareem-Taha-05/medvol/actions)
 
 <br/>
 
@@ -26,7 +26,7 @@ Built with PyQt5, VTK, and Matplotlib. No cloud. No setup wizard. No nonsense.
 <br/>
 <br/>
 
-[**Live Web Demo**](https://YOUR_USER.github.io/medvol/demo) · [**Documentation**](https://YOUR_USER.github.io/medvol) · [**Report a Bug**](https://github.com/YOUR_USER/medvol/issues/new?template=bug_report.md) · [**Request a Feature**](https://github.com/YOUR_USER/medvol/issues/new?template=feature_request.md)
+[**Live Web Demo**](https://Kareem-Taha-05.github.io/medvol/demo) · [**Documentation**](https://Kareem-Taha-05.github.io/medvol) · [**Report a Bug**](https://github.com/Kareem-Taha-05/medvol/issues/new?template=bug_report.md) · [**Request a Feature**](https://github.com/Kareem-Taha-05/medvol/issues/new?template=feature_request.md)
 
 </div>
 
@@ -88,7 +88,7 @@ Acid-green phosphor on concrete. Zero rounded corners. The 3D view dominates the
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USER/medvol
+git clone https://github.com/Kareem-Taha-05/medvol
 cd medvol
 pip install .
 ```
@@ -291,7 +291,7 @@ Contributions are very welcome. If this is your first time contributing to an op
 **Quick start:**
 
 ```bash
-git clone https://github.com/YOUR_USER/medvol
+git clone https://github.com/Kareem-Taha-05/medvol
 cd medvol
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
