@@ -75,7 +75,7 @@ Both sliders return to zero on double-click (standard Qt behaviour).
 |-----|--------|
 | `Ctrl+Q` | Quit |
 
-More keyboard shortcuts are planned — see the [Roadmap](../changelog.md).
+More keyboard shortcuts are planned — see the [GitHub repo](https://github.com/Kareem-Taha-05/medvol).
 
 ---
 
