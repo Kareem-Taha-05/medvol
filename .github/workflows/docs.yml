@@ -5,8 +5,7 @@ on:
     branches: [main]
     paths:
       - "docs/**"
-      - "mkdocs.yml"
-      - "medvol/**"   # rebuild docs if source code docstrings change
+      - "medvol/**"
 
 permissions:
   contents: write
@@ -35,4 +34,4 @@ jobs:
           pip install mkdocs-material mkdocstrings[python] mkdocs-git-revision-date-localized-plugin
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy --force --config-file docs/mkdocs.yml

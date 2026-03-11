@@ -23,14 +23,13 @@ stretched/squashed appearance on multi-frame and folder-series DICOMs.
 """
 
 import os
-from collections import Counter
 
+import nibabel as nib
 import numpy as np
 import pydicom
-import nibabel as nib
-from scipy.ndimage import zoom as ndimage_zoom
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMessageBox, QProgressDialog
+from scipy.ndimage import zoom as ndimage_zoom
 
 # ---------------------------------------------------------------------------
 # Helpers

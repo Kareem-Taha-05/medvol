@@ -10,9 +10,8 @@ Layout (horizontal strip):
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QSlider, QSizePolicy
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QSizePolicy, QSlider, QWidget
 
 CANVAS_H = 260  # canvas height = width (square)
 

@@ -11,9 +11,9 @@ __license__ = "MIT"
 
 # Public programmatic API — importable without starting Qt
 from medvol.core.loaders import (
-    load_nifti_file,
     load_dicom_file,
     load_dicom_folder,
+    load_nifti_file,
 )
 from medvol.utils.image_processing import adjust_brightness_contrast
 

@@ -4,7 +4,9 @@ Also called by the `medvol` CLI script defined in pyproject.toml.
 """
 
 import sys
+
 from PyQt5.QtWidgets import QApplication
+
 from medvol.ui.main_viewer import MedicalImageViewer
 
 

@@ -7,14 +7,14 @@ only to show a helpful warning in the UI if a file fails to decode.
 """
 
 try:
-    import gdcm  # installed via `pip install gdcm` or `pip install python-gdcm`
+    import gdcm  # noqa: F401  — probe only; pydicom uses it transparently
 
     GDCM_AVAILABLE = True
 except ImportError:
     GDCM_AVAILABLE = False
 
 try:
-    import pylibjpeg
+    import pylibjpeg  # noqa: F401  — probe only; pydicom uses it transparently
 
     PYLIBJPEG_AVAILABLE = True
 except ImportError:
