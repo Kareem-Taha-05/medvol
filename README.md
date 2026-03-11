@@ -29,6 +29,21 @@
 
 ---
 
+## Screenshots
+
+<table>
+<tr>
+<td><img src="assets/demo/screenshot_main.png" alt="Full window — all panels loaded"/></td>
+<td><img src="assets/demo/screenshot_3d.png" alt="3D volume render close-up"/></td>
+</tr>
+<tr>
+<td align="center"><em>Full window — brutalist phosphor UI</em></td>
+<td align="center"><em>3D ray-cast render with three-point lighting</em></td>
+</tr>
+</table>
+
+---
+
 ## What is MEDVOL?
 
 Most medical viewers are either heavyweight clinical suites that take 20 minutes

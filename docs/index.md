@@ -69,3 +69,18 @@ library is installed, compressed files open without any user intervention.
 Most viewers treat 3D rendering as an afterthought tucked in a corner.
 MEDVOL puts the volume render on the left at 60% of the screen width —
 because that's the most impressive thing the application does.
+
+---
+
+## Screenshots
+
+<table>
+<tr>
+<td><img src="assets/demo/screenshot_main.png" alt="Full window"/></td>
+<td><img src="assets/demo/screenshot_3d.png" alt="3D render"/></td>
+</tr>
+<tr>
+<td align="center"><em>Full window — brutalist phosphor UI</em></td>
+<td align="center"><em>3D ray-cast render with three-point lighting</em></td>
+</tr>
+</table>
