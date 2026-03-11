@@ -21,9 +21,9 @@ jobs:
           cache: "pip"
 
       - name: Install MkDocs
-        run: pip install "mkdocs-material<9.6" pymdown-extensions
+        run: pip install "mkdocs-material==9.5.50" pymdown-extensions
 
-      - name: Copy assets into docs for MkDocs
+      - name: Copy assets into docs
         run: cp -r assets docs/assets
 
       - name: Deploy to GitHub Pages
