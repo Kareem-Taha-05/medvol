@@ -6,7 +6,7 @@ Built with PyQt5, VTK, and Matplotlib.
 """
 
 __version__ = "1.0.0"
-__author__  = "YOUR_NAME"
+__author__ = "YOUR_NAME"
 __license__ = "MIT"
 
 # Public programmatic API — importable without starting Qt

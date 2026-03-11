@@ -56,11 +56,11 @@ all = [
 ]
 
 [project.urls]
-Homepage     = "https://github.com/Kareem-Taha-05/medvol"
-Documentation = "https://Kareem-Taha-05.github.io/medvol"
-Repository   = "https://github.com/Kareem-Taha-05/medvol"
-Issues       = "https://github.com/Kareem-Taha-05/medvol/issues"
-Changelog    = "https://github.com/Kareem-Taha-05/medvol/blob/main/CHANGELOG.md"
+Homepage     = "https://github.com/YOUR_USER/medvol"
+Documentation = "https://YOUR_USER.github.io/medvol"
+Repository   = "https://github.com/YOUR_USER/medvol"
+Issues       = "https://github.com/YOUR_USER/medvol/issues"
+Changelog    = "https://github.com/YOUR_USER/medvol/blob/main/CHANGELOG.md"
 
 [project.scripts]
 # After `pip install .`, users can run `medvol` from anywhere
@@ -72,13 +72,13 @@ packages = ["medvol"]
 # ── Black ──────────────────────────────────────────────────────────────────────
 [tool.black]
 line-length = 100
-target-version = ["py310", "py311", "py312"]
+target-version = ["py311"]
 skip-string-normalization = false
 
 # ── Ruff ───────────────────────────────────────────────────────────────────────
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings

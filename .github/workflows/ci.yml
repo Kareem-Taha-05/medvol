@@ -27,7 +27,7 @@ jobs:
           pip install -e ".[dev]"
 
       - name: Black — format check
-        run: black --check medvol/
+        run: black --check --target-version py311 medvol/
 
       - name: Ruff — lint
         run: ruff check medvol/

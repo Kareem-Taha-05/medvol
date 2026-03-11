@@ -7,20 +7,23 @@ only to show a helpful warning in the UI if a file fails to decode.
 """
 
 try:
-    import gdcm          # installed via `pip install gdcm` or `pip install python-gdcm`
+    import gdcm  # installed via `pip install gdcm` or `pip install python-gdcm`
+
     GDCM_AVAILABLE = True
 except ImportError:
     GDCM_AVAILABLE = False
 
 try:
     import pylibjpeg
+
     PYLIBJPEG_AVAILABLE = True
 except ImportError:
     PYLIBJPEG_AVAILABLE = False
 
 # pydicom ≥ 2.1 ships its own fallback handler; detect it too
 try:
-    import pydicom.pixels   # noqa: F401  (exists in pydicom ≥ 2.4)
+    import pydicom.pixels  # noqa: F401  (exists in pydicom ≥ 2.4)
+
     PYDICOM_PIXELS = True
 except ImportError:
     PYDICOM_PIXELS = False
@@ -30,6 +33,6 @@ ANY_COMPRESSION_BACKEND = GDCM_AVAILABLE or PYLIBJPEG_AVAILABLE or PYDICOM_PIXEL
 
 COMPRESSION_HANDLERS = {
     "jpeg": PYLIBJPEG_AVAILABLE or GDCM_AVAILABLE,
-    "j2k":  GDCM_AVAILABLE,
-    "rle":  GDCM_AVAILABLE,
+    "j2k": GDCM_AVAILABLE,
+    "rle": GDCM_AVAILABLE,
 }

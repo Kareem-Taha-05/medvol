@@ -1,8 +1,8 @@
 # UI modes
 CURSOR_MODE = "cursor"
-ZOOM_MODE   = "zoom"
+ZOOM_MODE = "zoom"
 
-ZOOM_IN_FACTOR  = 0.5
+ZOOM_IN_FACTOR = 0.5
 ZOOM_OUT_FACTOR = 2.0
 
 # ── Palette: brutalist phosphor ────────────────────────────────────────────

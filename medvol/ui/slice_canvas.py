@@ -11,24 +11,23 @@ Layout (horizontal strip):
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
-from PyQt5.QtWidgets import (QWidget, QHBoxLayout, QLabel, QSlider, QSizePolicy)
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QSlider, QSizePolicy
 from PyQt5.QtCore import Qt
 
-CANVAS_H = 260   # canvas height = width (square)
+CANVAS_H = 260  # canvas height = width (square)
 
 
 class SliceCanvas(QWidget):
     def __init__(self, title: str, parent=None):
         super().__init__(parent)
         self.setObjectName("SliceRow")
-        self.setFixedHeight(CANVAS_H + 2)          # +2 for bottom border
+        self.setFixedHeight(CANVAS_H + 2)  # +2 for bottom border
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 
         # ── Matplotlib square canvas ──────────────────────────────────────
-        dpi     = 100
+        dpi = 100
         size_in = CANVAS_H / dpi
-        self.figure = plt.Figure(figsize=(size_in, size_in), dpi=dpi,
-                                 facecolor="#000000")
+        self.figure = plt.Figure(figsize=(size_in, size_in), dpi=dpi, facecolor="#000000")
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setFixedSize(CANVAS_H, CANVAS_H)
         self.canvas.setStyleSheet("background-color:#000000; border:none;")
@@ -49,9 +48,7 @@ class SliceCanvas(QWidget):
         self.slider.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.slider.setFixedHeight(CANVAS_H)
         self.slider.setOrientation(Qt.Horizontal)
-        self.slider.valueChanged.connect(
-            lambda v: self.slice_readout.setText(f"{v:03d}")
-        )
+        self.slider.valueChanged.connect(lambda v: self.slice_readout.setText(f"{v:03d}"))
 
         # ── Row layout ────────────────────────────────────────────────────
         row = QHBoxLayout(self)

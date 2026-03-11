@@ -37,6 +37,7 @@ from PyQt5.QtWidgets import QMessageBox, QProgressDialog
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _normalise_to_uint8(arr: np.ndarray) -> np.ndarray:
     """Normalise any numeric ndarray to uint8 [0, 255]."""
     arr = arr.astype(np.float32)
@@ -92,7 +93,7 @@ def _read_slice_spacing(datasets: list) -> float:
 
     # Try to derive from ImagePositionPatient z-coordinates
     if len(datasets) >= 2:
-        pos0 = getattr(datasets[0],  "ImagePositionPatient", None)
+        pos0 = getattr(datasets[0], "ImagePositionPatient", None)
         pos1 = getattr(datasets[-1], "ImagePositionPatient", None)
         if pos0 and pos1:
             dz = abs(float(pos1[2]) - float(pos0[2]))
@@ -102,8 +103,9 @@ def _read_slice_spacing(datasets: list) -> float:
     return 1.0
 
 
-def _resample_isotropic(volume: np.ndarray,
-                         row_sp: float, col_sp: float, slc_sp: float) -> np.ndarray:
+def _resample_isotropic(
+    volume: np.ndarray, row_sp: float, col_sp: float, slc_sp: float
+) -> np.ndarray:
     """
     Resample volume to isotropic 1 mm³ voxels using the minimum spacing as target.
     volume shape: (Z, Y, X)
@@ -131,13 +133,14 @@ def _resample_isotropic(volume: np.ndarray,
 # DICOM folder / series loader
 # ---------------------------------------------------------------------------
 
+
 def _sort_dicom_files(paths: list[str]) -> list[str]:
     """Sort a list of DICOM paths by InstanceNumber, then filename."""
     tagged = []
     for p in paths:
         try:
             ds = pydicom.dcmread(p, stop_before_pixels=True)
-            n  = int(getattr(ds, "InstanceNumber", 0))
+            n = int(getattr(ds, "InstanceNumber", 0))
         except Exception:
             n = 0
         tagged.append((n, p))
@@ -150,9 +153,7 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
     Load all DICOM slices from *folder_path* into a resampled 3-D uint8 volume.
     """
     all_files = [
-        os.path.join(folder_path, f)
-        for f in os.listdir(folder_path)
-        if f.lower().endswith(".dcm")
+        os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.lower().endswith(".dcm")
     ]
     if not all_files:
         QMessageBox.critical(parent, "Error", "No DICOM files found in the selected folder.")
@@ -164,8 +165,8 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
     progress.setWindowModality(Qt.WindowModal)
     progress.setMinimumDuration(0)
 
-    slices      = []
-    datasets    = []
+    slices = []
+    datasets = []
     target_shape = None
 
     for i, filepath in enumerate(dicom_files):
@@ -173,7 +174,7 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
         if progress.wasCanceled():
             return None
         try:
-            ds  = pydicom.dcmread(filepath)
+            ds = pydicom.dcmread(filepath)
             arr = _pixel_array(ds)
 
             # Apply rescale
@@ -187,9 +188,15 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
             # Resize if this slice differs (rare but happens)
             if arr.shape != target_shape:
                 from skimage.transform import resize as sk_resize
-                arr = sk_resize(arr, target_shape, order=1,
-                                mode="edge", anti_aliasing=False,
-                                preserve_range=True)
+
+                arr = sk_resize(
+                    arr,
+                    target_shape,
+                    order=1,
+                    mode="edge",
+                    anti_aliasing=False,
+                    preserve_range=True,
+                )
 
             slices.append(arr.astype(np.float32))
             datasets.append(ds)
@@ -203,11 +210,11 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
         QMessageBox.critical(parent, "Error", "No valid DICOM slices could be loaded.")
         return None
 
-    volume = np.stack(slices, axis=0)   # (Z, Y, X)
+    volume = np.stack(slices, axis=0)  # (Z, Y, X)
 
     # Read spacing and resample to isotropic
     row_sp, col_sp = _read_pixel_spacing(datasets[0])
-    slc_sp         = _read_slice_spacing(datasets)
+    slc_sp = _read_slice_spacing(datasets)
     print(f"[loader] folder spacing: row={row_sp} col={col_sp} slice={slc_sp}")
 
     volume = _resample_isotropic(volume, row_sp, col_sp, slc_sp)
@@ -218,22 +225,19 @@ def load_dicom_folder(folder_path: str, parent=None) -> np.ndarray | None:
 # Single DICOM file loader
 # ---------------------------------------------------------------------------
 
+
 def _find_series_siblings(seed_path: str) -> list[str]:
     """
     Return all .dcm files in the same folder that share the seed's
     SeriesInstanceUID, sorted by InstanceNumber.
     """
     folder = os.path.dirname(os.path.abspath(seed_path))
-    candidates = [
-        os.path.join(folder, f)
-        for f in os.listdir(folder)
-        if f.lower().endswith(".dcm")
-    ]
+    candidates = [os.path.join(folder, f) for f in os.listdir(folder) if f.lower().endswith(".dcm")]
     if not candidates:
         return [seed_path]
 
     try:
-        seed_ds    = pydicom.dcmread(seed_path, stop_before_pixels=True)
+        seed_ds = pydicom.dcmread(seed_path, stop_before_pixels=True)
         series_uid = getattr(seed_ds, "SeriesInstanceUID", None)
     except Exception:
         return [seed_path]
@@ -263,19 +267,19 @@ def load_dicom_file(file_path: str, parent=None) -> np.ndarray | None:
     * Truly isolated single slice: returns a 3-copy volume so all views work.
     """
     try:
-        ds       = pydicom.dcmread(file_path)
+        ds = pydicom.dcmread(file_path)
         n_frames = int(getattr(ds, "NumberOfFrames", 1))
 
         # ── Multi-frame ───────────────────────────────────────────────────
         if n_frames > 1:
-            raw = _pixel_array(ds)                     # shape (F, H, W) or (H, W)
+            raw = _pixel_array(ds)  # shape (F, H, W) or (H, W)
             if raw.ndim == 2:
                 raw = raw[np.newaxis]
 
             if hasattr(ds, "RescaleSlope") and hasattr(ds, "RescaleIntercept"):
                 raw = raw * float(ds.RescaleSlope) + float(ds.RescaleIntercept)
 
-            volume = raw.astype(np.float32)            # (Z, Y, X)
+            volume = raw.astype(np.float32)  # (Z, Y, X)
 
             # Per-frame spacing
             row_sp, col_sp = _read_pixel_spacing(ds)
@@ -317,13 +321,14 @@ def load_dicom_file(file_path: str, parent=None) -> np.ndarray | None:
 # NIfTI loader
 # ---------------------------------------------------------------------------
 
+
 def load_nifti_file(file_path: str) -> np.ndarray:
     """
     Load a NIfTI file and return a resampled (slices, rows, cols) uint8 volume.
     Reads voxel dimensions from the header and resamples to isotropic spacing.
     """
     nifti_img = nib.load(file_path)
-    volume    = nifti_img.get_fdata().astype(np.float32)
+    volume = nifti_img.get_fdata().astype(np.float32)
 
     # NIfTI voxel sizes: header.get_zooms() returns (col, row, slice) spacing
     zooms = nifti_img.header.get_zooms()[:3]
