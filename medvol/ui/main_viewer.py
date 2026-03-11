@@ -18,34 +18,33 @@ MedicalImageViewer – brutalist phosphor layout.
 
 import numpy as np
 import vtk
-from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
-
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import (
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QPushButton,
-    QLabel,
-    QSlider,
-    QSizePolicy,
     QFileDialog,
-    QMessageBox,
     QFrame,
+    QHBoxLayout,
+    QLabel,
+    QMessageBox,
+    QPushButton,
+    QSizePolicy,
+    QSlider,
+    QVBoxLayout,
+    QWidget,
 )
+from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
 from medvol.core.constants import (
-    CURSOR_MODE,
-    ZOOM_MODE,
-    ZOOM_IN_FACTOR,
-    ZOOM_OUT_FACTOR,
     APP_STYLESHEET,
+    CURSOR_MODE,
+    ZOOM_IN_FACTOR,
+    ZOOM_MODE,
+    ZOOM_OUT_FACTOR,
 )
 from medvol.core.loaders import load_dicom_file, load_dicom_folder, load_nifti_file
 from medvol.core.volume_rendering import render_volume
-from medvol.utils.image_processing import adjust_brightness_contrast
 from medvol.ui.slice_canvas import SliceCanvas
+from medvol.utils.image_processing import adjust_brightness_contrast
 
 
 class MedicalImageViewer(QWidget):

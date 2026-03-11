@@ -34,4 +34,4 @@ jobs:
           pip install mkdocs-material mkdocstrings[python] mkdocs-git-revision-date-localized-plugin
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force --config-file docs/mkdocs.yml
+        run: mkdocs gh-deploy --force

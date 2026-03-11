@@ -1,16 +1,15 @@
 site_name: MEDVOL
 site_description: Brutalist 3D medical image viewer — DICOM & NIfTI, zero configuration
-site_author: Kareem Taha
-site_url: https://Kareem-Taha-05.github.io/medvol
-repo_url: https://github.com/Kareem-Taha-05/medvol
-repo_name: Kareem-Taha-05/medvol
+site_author: YOUR_NAME
+site_url: https://YOUR_USER.github.io/medvol
+repo_url: https://github.com/YOUR_USER/medvol
+repo_name: YOUR_USER/medvol
 
 copyright: "MIT License — MEDVOL contributors"
 
 # ── Theme ──────────────────────────────────────────────────────────────────────
 theme:
   name: material
-  custom_dir: docs/overrides    # for custom CSS / logo override
   palette:
     scheme: slate               # dark base
     primary: custom             # → see extra.css for #b8ff2e override
@@ -94,7 +93,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Kareem-Taha-05/medvol
+      link: https://github.com/YOUR_USER/medvol
 
 extra_css:
   - stylesheets/extra.css
