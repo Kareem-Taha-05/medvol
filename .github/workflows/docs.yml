@@ -3,14 +3,20 @@ name: Deploy Docs
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     name: Build & Deploy MkDocs
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +24,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
 
       - name: Install MkDocs
         run: pip install "mkdocs-material==9.5.50" pymdown-extensions
@@ -26,5 +31,14 @@ jobs:
       - name: Copy assets into docs
         run: cp -r assets docs/assets
 
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        id: deployment
+        uses: actions/deploy-pages@v4
