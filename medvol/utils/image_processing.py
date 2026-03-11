@@ -30,14 +30,14 @@ def adjust_brightness_contrast(image: np.ndarray, brightness: int, contrast: int
     Returns:
         Adjusted image as uint8, values clipped to [0, 255].
     """
-    img = image.astype(np.float32) / 255.0      # normalise to [0, 1]
+    img = image.astype(np.float32) / 255.0  # normalise to [0, 1]
 
     # Brightness: linear offset, full slider range maps to [-1, +1]
     img += brightness / 255.0
 
     # Contrast: scale around midpoint; squaring gives smooth [0..4] multiplier
     if contrast != 0:
-        factor = ((contrast + 255.0) / 255.0) ** 2   # 0->0, 127->~1, 255->4
+        factor = ((contrast + 255.0) / 255.0) ** 2  # 0->0, 127->~1, 255->4
         img = (img - 0.5) * factor + 0.5
 
     return np.clip(img * 255.0, 0, 255).astype(np.uint8)

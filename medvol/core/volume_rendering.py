@@ -29,7 +29,6 @@ import numpy as np
 import vtk
 from PyQt5.QtWidgets import QMessageBox
 
-
 # ── Transfer functions ────────────────────────────────────────────────────────
 
 

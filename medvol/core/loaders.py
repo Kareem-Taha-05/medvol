@@ -32,7 +32,6 @@ from scipy.ndimage import zoom as ndimage_zoom
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMessageBox, QProgressDialog
 
-
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
