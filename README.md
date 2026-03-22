@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/branding/logo.svg" width="90" height="90" alt="MEDVOL"/>
+<img src="assets/branding/logo.svg" width="200" height="200" alt="MEDVOL"/>
 
 # MEDVOL
 
